@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@core/*": [
+        "engine/*"
+      ],
+      "@myIteroDotCom/*": [
+        "engine/web/myItero.com/*"
+      ],
+      "@accountManagement/*": [
+        "engine/web/accountManagement/*"
+      ],
+      "@pages/*": [
+        "pageFactory/pageRepository/*"
+      ],
+      "@objects/*": [
+        "pageFactory/objectRepository/*"
+      ],
+      "@lib/*": [
+        "lib/*"
+      ],
+      "@plugins/*": [
+        "plugins/*"
+      ]
+    }
+  }
+}

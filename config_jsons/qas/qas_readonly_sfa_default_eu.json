@@ -1,0 +1,170 @@
+{
+    "jamaDetails": {
+        "specs": [
+            {
+                "testId": "",
+                "testRunId": "",
+                "testName": ""
+            }
+        ],
+        "cycleId": "-1",
+        "suiteName": "",
+        "targetRegion": "eu"
+    },
+    "browserSettings": {
+        "headless": true,
+        "slow_mo": null,
+        "viewport": null
+    },
+    "urls": {
+        "name": "qas",
+        "instance_name": "eu",
+        "state": true,
+        "mat": "https://ppr-mycadent.st.iterocloud.com",
+        "rxApp": "http://itero-rxapp-e3.dv.itero.cloud",
+        "matApi": "https://gateway-cus.ppr.aligntech.com",
+        "mateApi": "http://mate.dv.itero.cloud",
+        "rxAppSdk": "http://itero-rxappsdk-e6.dv.itero.cloud/sonic.html",
+        "termsUrl": "https://itero-documents-qas.iterocloud.com/myiTero.comTermsOfUse.en-US.pdf",
+        "awsRegion": "us-west-2",
+        "exportApi": "https://qas-export-mycadent.mycadent.com",
+        "id_v0_zfx": "1",
+        "id_v1_zfx": "11",
+        "viewerUrl": "https://itero-web3dtool-e3.dv.itero.cloud",
+        "admin_pass": "ogyeo@lhitlwals1zbalmAcxt",
+        "matAuthApi": "https://identity-cus.ppr.aligntech.com",
+        "mockServer": "http://10.230.5.167",
+        "secret_zxf": "EzDNy0BJ0nqg_MfHPThoDBuGC6Ia",
+        "admin_email": "svc.core_admin@aligntech.com",
+        "id_v1_aspen": "7",
+        "snsTopicArn": "arn:aws:sns:us-west-2:440130807111:itero-e2e-poc-test-done",
+        "id_v0_exocad": "2",
+        "id_v1_exocad": "12",
+        "secret_aspen": "pCu6FUXrukK73mzuEWNzzMIvMcwa",
+        "client_id_zfx": "TnoX5mqkTMqYmA0LrQII6FLRzkUa",
+        "invitationApp": "https://itero-invitationsapp-qas.dv.itero.cloud/activate/f4d56c16-d074-4338-869d-027cf8802aac",
+        "secret_exocad": "4jdeWiwMEfi3xcRuf79kDh_RlJEa",
+        "client_id_aspen": "6avs5j0Z1Go8LEwv_HTfbcTf9s8a",
+        "client_id_exocad": "5JUk6VpypF5d3E5GG5TqO_uEQ_8a",
+        "privacyCookiesUrl": "https://itero-documents-qas.iterocloud.com/doctorprivacynotice.en-US.pdf",
+        "internal_user_pass": "AlignSecurityPr3caut1on159",
+        "internal_user_email": "iterobiz-test1@aligntech.com",
+        "eupapi": "https://qas.na.api.itero.dv.aligntech.com",
+        "wcm_aes": "http://qasaeswcm01.aligntech.com/WCMServer/Login.aspx",
+        "wcm_cr": "http://qascrwcm01.aligntech.com/WCMServer/Login.aspx",
+        "wcm_ide": "http://qasidewcm01.aligntech.com/WCMServer/Login.aspx",
+        "midc": "https://itero-myitero-qas.iterocloud.com",
+        "myiteroBff": "https://itero-myiterobff-qas.dv.itero.cloud",
+        "wcm_par": "http://qasparwcm01.aligntech.com/WCMServer/Login.aspx",
+        "wcm_ctm": "http://qasitrwcm01.aligntech.com/WCMServer/Login.aspx",
+        "wcm_mx": "http://qasmxwcm01.aligntech.com/WCMServer/Login.aspx",
+        "alignTechUrl": "https://www.aligntech.com",
+        "midcApi_na": "https://myiterobff-qas-usw1.iterocloud.com",
+        "tickets_na": "https://qas.na.tickets.st.iterocloud.com",
+        "mat_na": "https://qas-mycadent.mycadent.com",
+        "matOrder_na": "https://0ya12pxzp8.execute-api.us-west-2.amazonaws.com",
+        "eupApi_na": "https://eupapi-us-west-2-qas.st.iterocloud.com",
+        "identityApi_na": "https://identity-cus.qas.aligntech.com",
+        "exportApi_na": "https://qas-export-mycadent.mycadent.com",
+        "rxmsApi_na": "https://rxms-us-west-2-qas.st.iterocloud.com",
+        "matSdk_na": "https://itero-rxappsdk-qas.st.iterocloud.com",
+        "wcm_cn": "http://10.246.170.224/WCMServer/Login.aspx"
+    },
+    "envUrlsV2": {
+          "apac_urls": {
+        },
+        "center_urls": {
+            "name": "qas"
+        },
+        "cn_urls": {
+        },
+        "eu_urls": {
+            "assetsBffViewer_eu":"https://assetsbff-eu-central-1-qas.st.iterocloud.com",
+            "assets_eu": "https://assets-eu-central-1-qas.st.iterocloud.com",
+            "desktopNotificationConnect_eu": "https://itero-notifications-agent-eu-central-1-qas.st.iterocloud.com",
+            "desktopNotificationNegotiate_eu": "https://itero-notifications-agent-eu-central-1-qas.st.iterocloud.com",
+            "eupApi_eu": "https://eupapi-eu-central-1-qas.st.iterocloud.com",
+            "exocaddomain_eu": "https://gateway-cus-euc1.qas.aligntech.com",
+            "exportApi_eu": "https://qas-export-mycadent.mycadent.com",
+            "identityApi_eu": "https://identity-cus.qas.aligntech.com",
+            "identityAuth_eu": "https://identity-cus.qas.aligntech.com",
+            "iosimGateway_eu": "https://gateway-cus-usw1.qas.aligntech.com",
+            "matOrder_eu": "https://0ya12pxzp8.execute-api.us-west-2.amazonaws.com",
+            "matSdk_eu": "https://itero-rxappsdk-qas.st.iterocloud.com",
+            "mat_eu": "https://qas-mycadent.mycadent.com",
+            "midasApi_eu": "https://midas-qas-eu-central-1.st.iterocloud.com",
+            "midcApi_eu": "https://myiterobff-qas-euc1.st.iterocloud.com",
+            "rxAttachments_eu": "https://rx-attachments-api-eu-central-1-qas.st.iterocloud.com",
+            "rxmsApi_eu": "https://rxms-eu-central-1-qas.st.iterocloud.com",
+            "sessionStartMidc_eu": "https://sessionmng-eu-central-1-qas.st.iterocloud.com",
+            "sfdcAuth_eu": "https://test.salesforce.com",
+            "sfdc_eu": "https://aligntech--qas1.sandbox.my.salesforce.com",
+            "sharedesignpreview_eu": "https://itero-sm-us-west-2-qas.st.iterocloud.com",
+            "sharedesignupload_eu": "https://itero-uploader-us-west-2-qas.st.iterocloud.com",
+            "tickets_eu": "https://qas.na.tickets.st.iterocloud.com",
+            "wcmMexico_eu": "http://qasmxwcm01.aligntech.com",
+            "wcm_eu": "http://qascrwcm01.aligntech.com",
+            "web3d_viewer_eu": "https://web3dtool-bff-eu-central-1-qas.st.iterocloud.com",
+            "aohsBff_eu": "https://api-proxy-eu.qas.aligntech.com",
+            "visitReport_eu": "https://itero-visit-reports-api-eu-central-1-qas.st.iterocloud.com",
+            "ims_eu": "https://itero-auth-identity-eu-central-1-qas.st.iterocloud.com"
+        },
+         "na_urls": {
+        }
+    },
+    "preparedData": [
+        {
+            "name": "sfdc_qas_default_eu_BZnE2_0",
+            "matCompanyId": 266201,
+            "region": "EU",
+            "country": "DE",
+            "flow": "sfdc",
+            "relatedScanners": [
+                {
+                    "id": "4D6B281C-E395-41DC-A0C7-25BA133735C8",
+                    "sn": "WOA2023W20GG"
+                },
+                {
+                    "id": "631A7753-51B7-4AC6-807E-76586B272523",
+                    "sn": "YUC23SFA2099FLX"
+                }
+            ],
+            "relatedPersons": [
+                {
+                    "matPersonId": 1383903,
+                    "email": "barbara@makayla.com",
+                    "password": "Aligner5",
+                    "title": "Dr.",
+                    "firstName": "Christopher",
+                    "middleName": "Doctor",
+                    "lastName": "Blanchard",
+                    "type": "Dentist",
+                    "orders": []
+                }
+            ],
+            "relatedCompanies": [
+                {
+                    "name": "SkytestLab_V1_CPovo_1",
+                    "matCompanyId": 266203,
+                    "relatedScanners": [],
+                    "relatedPersons": [
+                        {
+                            "matPersonId": 1383905,
+                            "email": "cassandra@elizabeth.com",
+                            "password": "Aligner5",
+                            "title": "Dr.",
+                            "firstName": "Christina",
+                            "middleName": "Lab",
+                            "lastName": "Martin",
+                            "type": "Lab Personnel",
+                            "orders": []
+                        }
+                    ]
+                }
+            ],
+            "id": "6498530340bba404892d8cdc",
+            "label": "qas_readonly_sfa_default_eu"
+        }
+    ],
+    "inputData": {}
+}

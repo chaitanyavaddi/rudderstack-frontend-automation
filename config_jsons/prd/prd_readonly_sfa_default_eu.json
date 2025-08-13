@@ -1,0 +1,142 @@
+{
+    "jamaDetails": {
+        "specs": [
+            {
+                "testId": "",
+                "testRunId": "",
+                "testName": ""
+            }
+        ],
+        "cycleId": "-1",
+        "suiteName": "test_denture_removable_ship_to_lab",
+        "targetRegion": "eu"
+    },
+    "browserSettings": {
+        "headless": true,
+        "slow_mo": null,
+        "viewport": null
+    },
+    "urls": {
+        "name": "prd",
+        "instance_name": "na",
+        "state": true,
+        "snsTopicArn": "arn:aws:sns:us-west-2:440130807111:itero-e2e-poc-test-done",
+        "awsRegion": "us-west-2",
+        "midcCn": "https://myitero.cn",
+        "myiteroBff": "https://bff.cloud.myitero.com",
+        "mat": "https://mycadent.com",
+        "matAuthApi": "https://identity-cus.aligntech.com",
+        "matApi": "https://na.api.cloud.myitero.com",
+        "rxApp": "https://itero-rxapp-prod.cloud.myitero.com",
+        "rxAppSdk": "https://itero-rxappsdk-prod.cloud.myitero.com",
+        "viewerUrl": "https://itero-web3dtool-prod-us-west-1.iterocloud.com",
+        "mateApi": "http://mate.dv.itero.cloud",
+        "alignTechUrl": "https://www.aligntech.com",
+        "termsUrl": "https://d2v5oirpbhmlsp.cloudfront.net/myiTero.comTermsOfUse.en-US.pdf",
+        "privacyCookiesUrl": "https://d2v5oirpbhmlsp.cloudfront.net/doctorprivacynotice.en-US.pdf",
+        "invitationApp": "https://itero-registrationapp-prod.iterocloud.com",
+        "mockServer": "http://10.230.5.167",
+        "midc": "https://bff.cloud.myitero.com",
+        "midcApi_na": "https://bff-na.cloud.myitero.com",
+        "tickets_na": "https://prod.na.tickets.iterocloud.com",
+        "assets_na": "https://assets-us-west-1-prod.iterocloud.com",
+        "exportApi_na": "https://export.mycadent.com",
+        "matApi_na": "https://eupapi-us-west-1-prod.cloud.myitero.com",
+        "mat_na": "https://mycadent.com",
+        "rxmsApi_na": "https://rxms-us-west-1-prod.cloud.myitero.com",
+        "matOrder_na": "https://hst1vbbsje.execute-api.us-west-1.amazonaws.com",
+        "matSdk_na": "https://itero-rxapp-prod.cloud.myitero.com",
+        "eupApi_na": "https://eupapi-us-west-1-prod.cloud.myitero.com",
+        "iosimGateway_na": "https://gateway-cus-usw1.aligntech.com",
+        "sessionStartMidc_na": "https://sessionmng-us-west-1-prod.iterocloud.com",
+        "web3d_viewer_na": "https://web3dtool-bff-us-west-1-prod.iterocloud.com",
+        "start_session_auth_na": "https://sessionmng-us-west-1-prod.iterocloud.com",
+        "rxAttachments_na": "https://rx-attachments-api-us-west-1-prod.iterocloud.com",
+        "midasApi_na": "https://midas-prod-us-west-1.cloud.myitero.com"
+    },
+    "envUrlsV2": {
+        "center_urls": {
+            "name": "prd"
+        },
+        "na_urls": {
+        },
+        "eu_urls": {
+            "assets_eu": "https://assets-eu-central-1-prod.iterocloud.com",
+            "eupApi_eu": "https://eupapi-eu-central-1-prod.cloud.myitero.com",
+            "exportApi_eu": "https://export.mycadent.com",
+            "identityApi_eu": "https://identity-cus.aligntech.com",
+            "iosimGateway_eu": "https://gateway-cus-euc1.aligntech.com",
+            "exocaddomain_eu": "https://gateway-cus-euc1.aligntech.com",
+            "matApi_eu": "https://eupapi-eu-central-1-prod.cloud.myitero.com",
+            "matOrder_eu": "https://hst1vbbsje.execute-api.us-west-1.amazonaws.com",
+            "matSdk_eu": "https://itero-rxapp-prod.cloud.myitero.com",
+            "mat_eu": "https://mycadent.com",
+            "midasApi_eu": "https://midas-prod-eu-central-1.cloud.myitero.com",
+            "midcApi_eu": "https://bff-euc.cloud.myitero.com",
+            "midc_eu": "https://bff.cloud.myitero.com",
+            "rxAttachments_eu": "https://rx-attachments-api-eu-central-1-prod.iterocloud.com",
+            "rxmsApi_eu": "https://rxms-eu-central-1-prod.cloud.myitero.com",
+            "sessionStartMidc_eu": "https://sessionmng-ap-northeast-1-prod.iterocloud.com",
+            "start_session_auth_eu": "https://sessionmng-eu-central-1-prod.iterocloud.com",
+            "tickets_eu": "https://prod.na.tickets.iterocloud.com",
+            "web3d_viewer_eu": "https://web3dtool-bff-eu-central-1-prod.iterocloud.com"
+        },
+        "cn_urls": {
+        },
+        "apac_urls": {
+        }
+    },
+    "preparedData": [
+        {
+            "name": "System Flow Clinic EU",
+            "matCompanyId": 442060,
+            "region": "EU",
+            "country": "PL",
+            "flow": "sfdc",
+            "relatedScanners": [
+                {
+                    "sn": "YUC2024W48A905",
+                    "id": "automation"
+                }
+            ],
+            "relatedPersons": [
+                {
+                    "matPersonId": 1649811,
+                    "email": "r5wh3f888@mozmail.com",
+                    "password": "Aligner5",
+                    "title": "",
+                    "firstName": "System Flow Clinic EU",
+                    "middleName": "",
+                    "lastName": "Production1",
+                    "type": "Dentist",
+                    "orders": []
+                }
+            ],
+            "relatedCompanies": [
+                {
+                    "name": "System Flow Lab EU",
+                    "matCompanyId": 446400,
+                    "relatedScanners": [],
+                    "relatedPersons": [
+                        {
+                            "matPersonId": 1653878,
+                            "email": "02j115cij@mozmail.com",
+                            "password": "Aligner5",
+                            "title": "",
+                            "firstName": "System Lab Tech EU",
+                            "middleName": "",
+                            "lastName": "Production1",
+                            "type": "Lab Personnel",
+                            "orders": []
+                        }
+                    ]
+                }
+            ],
+            "id": "6497fb6940bba404892d8ae2",
+            "label": "prd_readonly_sfa_default_us"
+        }
+    ],
+    "inputData": {
+        "request_id": "a3bbfe53-9795-4ec7-a6ab-b3a62b97e63f"
+    }
+}

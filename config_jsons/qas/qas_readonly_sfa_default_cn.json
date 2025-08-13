@@ -1,0 +1,169 @@
+{
+    "jamaDetails": {
+        "specs": [
+            {
+                "testId": "",
+                "testRunId": "",
+                "testName": ""
+            }
+        ],
+        "cycleId": "-1",
+        "suiteName": "",
+        "targetRegion": "cn"
+    },
+    "browserSettings": {
+        "headless": true,
+        "slow_mo": null,
+        "viewport": null
+    },
+    "urls": {
+        "name": "qas",
+        "instance_name": "cn",
+        "state": true,
+        "mat": "https://ppr-mycadent.st.iterocloud.com",
+        "rxApp": "http://itero-rxapp-e3.dv.itero.cloud",
+        "matApi": "https://gateway-cus.ppr.aligntech.com",
+        "mateApi": "http://mate.dv.itero.cloud",
+        "rxAppSdk": "http://itero-rxappsdk-e6.dv.itero.cloud/sonic.html",
+        "termsUrl": "https://itero-documents-qas.iterocloud.com/myiTero.comTermsOfUse.en-US.pdf",
+        "awsRegion": "us-west-2",
+        "exportApi": "https://qas-export-mycadent.mycadent.com",
+        "id_v0_zfx": "1",
+        "id_v1_zfx": "11",
+        "viewerUrl": "https://itero-web3dtool-e3.dv.itero.cloud",
+        "admin_pass": "ogyeo@lhitlwals1zbalmAcxt",
+        "matAuthApi": "https://identity-cus.ppr.aligntech.com",
+        "mockServer": "http://10.230.5.167",
+        "secret_zxf": "EzDNy0BJ0nqg_MfHPThoDBuGC6Ia",
+        "admin_email": "svc.core_admin@aligntech.com",
+        "id_v1_aspen": "7",
+        "snsTopicArn": "arn:aws:sns:us-west-2:440130807111:itero-e2e-poc-test-done",
+        "id_v0_exocad": "2",
+        "id_v1_exocad": "12",
+        "secret_aspen": "pCu6FUXrukK73mzuEWNzzMIvMcwa",
+        "client_id_zfx": "TnoX5mqkTMqYmA0LrQII6FLRzkUa",
+        "invitationApp": "https://itero-invitationsapp-qas.dv.itero.cloud/activate/f4d56c16-d074-4338-869d-027cf8802aac",
+        "secret_exocad": "4jdeWiwMEfi3xcRuf79kDh_RlJEa",
+        "client_id_aspen": "6avs5j0Z1Go8LEwv_HTfbcTf9s8a",
+        "client_id_exocad": "5JUk6VpypF5d3E5GG5TqO_uEQ_8a",
+        "privacyCookiesUrl": "https://itero-documents-qas.iterocloud.com/doctorprivacynotice.en-US.pdf",
+        "internal_user_pass": "AlignSecurityPr3caut1on159",
+        "internal_user_email": "iterobiz-test1@aligntech.com",
+        "eupapi": "https://qas.na.api.itero.dv.aligntech.com",
+        "wcm_aes": "http://qasaeswcm01.aligntech.com/WCMServer/Login.aspx",
+        "wcm_cr": "http://qascrwcm01.aligntech.com/WCMServer/Login.aspx",
+        "wcm_ide": "http://qasidewcm01.aligntech.com/WCMServer/Login.aspx",
+        "midc": "https://itero-myitero-qas.iterocloud.com",
+        "myiteroBff": "https://itero-myiterobff-qas.dv.itero.cloud",
+        "wcm_par": "http://qasparwcm01.aligntech.com/WCMServer/Login.aspx",
+        "wcm_ctm": "http://qasitrwcm01.aligntech.com/WCMServer/Login.aspx",
+        "wcm_mx": "http://qasmxwcm01.aligntech.com/WCMServer/Login.aspx",
+        "alignTechUrl": "https://www.aligntech.com",
+        "midcApi_na": "https://myiterobff-qas-usw1.iterocloud.com",
+        "tickets_na": "https://qas.na.tickets.st.iterocloud.com",
+        "mat_na": "https://qas-mycadent.mycadent.com",
+        "matOrder_na": "https://0ya12pxzp8.execute-api.us-west-2.amazonaws.com",
+        "eupApi_na": "https://eupapi-us-west-2-qas.st.iterocloud.com",
+        "identityApi_na": "https://identity-cus.qas.aligntech.com",
+        "exportApi_na": "https://qas-export-mycadent.mycadent.com",
+        "rxmsApi_na": "https://rxms-us-west-2-qas.st.iterocloud.com",
+        "matSdk_na": "https://itero-rxappsdk-qas.st.iterocloud.com",
+        "wcm_cn": "http://10.246.170.224/WCMServer/Login.aspx"
+    },
+    "envUrlsV2": {
+          "apac_urls": {},
+        "center_urls": {
+            "name": "qas"
+        },
+        "cn_urls": {
+            "aohsBff_cn": "https://api-proxy-cn.qas.aligntech.com",
+            "assetsBffViewer_cn":"https://assetsbff-cn-north-1-qas.stg.myitero.cn",
+            "assets_cn": "https://private-assets-cn-north-1-qas.stg.myitero.cn",
+            "desktopNotificationConnect_cn": "https://itero-notification-agent-cn-north-1-qas.stg.myitero.cn",
+            "desktopNotificationNegotiate_cn": "https://itero-notification-agent-cn-north-1-qas.stg.myitero.cn",
+            "eupApi_cn": "https://eupapi-cn-north-1-qas.stg.myitero.cn",
+            "exocaddomain_cn": "https://gateway-cus.qas.invisalign.cn",
+            "exportApi_cn": "https://qas-export.stg.myitero.cn",
+            "identityApi_cn": "https://identity-cus.qas.invisalign.cn",
+            "identityAuth_cn": "https://identity-cus.qas.invisalign.cn",
+            "iosimGateway_cn": "",
+            "matOrder_cn": "https://0ya12pxzp8.execute-api.us-west-2.amazonaws.com",
+            "matSdk_cn": "https://rxappsdk-qas.stg.myitero.cn",
+            "mat_cn": "https://qas-mycadent.stg.myitero.cn",
+            "midasApi_cn": "https://midas-qas-cn-north-1.stg.myitero.cn",
+            "midcApi_cn": "https://myiterobff-qas.stg.myitero.cn",
+            "rxAttachments_cn": "https://rx-attachments-api-cn-north-1-qas.stg.myitero.cn",
+            "rxmsApi_cn": "https://rxms-cn-north-1-qas.stg.myitero.cn",
+            "sessionStartMidc_cn": "https://sessionmng-cn-north-1-qas.stg.myitero.cn",
+            "sfdcAuth_cn": "https://test.salesforce.com",
+            "sfdc_cn": "https://aligntech--qas1.sandbox.my.salesforce.com",
+            "sharedesignpreview_cn": "https://itero-sm-cn-north-1-qas.stg.myitero.cn",
+            "sharedesignupload_cn": "https://itero-uploader-cn-north-1-qas.stg.myitero.cn",
+            "tickets_cn": "https://qas.cn.tickets.st.iterocloud.com",
+            "wcm_cn": "http://qascn10wcm02.aligntech.com",
+            "web3d_viewer_cn": "https://web3dtool-bff-cn-north-1-qas.stg.myitero.cn",
+            "visitReport_cn": "https://itero-visit-reports-api-cn-north-1-qas.stg.myitero.cn",
+            "web3dtool-bff_cn":"https://itero-web3dtool-qas-cn-north-1.stg.myitero.cn" 
+            
+        },
+        "eu_urls": {},
+         "na_urls": {}
+    },
+    "preparedData": [
+        {
+            "name": "sfdc_qas_default_cn_mp9WT_0",
+            "matCompanyId": 266208,
+            "region": "CN",
+            "country": "CN",
+            "flow": "sfdc",
+            "relatedScanners": [
+                {
+                    "id": "EAB8D9BC-9F44-4E72-8FB2-922F8EA8BA7A",
+                    "sn": "WOA2023W20MM"
+                },
+                {
+                    "id": "C1E35536-D8C9-4625-9F31-D44911ED80C4",
+                    "sn": "YUC23SFA2098LLT"
+                }
+            ],
+            "relatedPersons": [
+                {
+                    "matPersonId": 1383909,
+                    "email": "sfdc_sfa_qas_cn_doctor_bnsye_0@gmail.com",
+                    "password": "Aligner5",
+                    "title": "Dr.",
+                    "firstName": "sfdc_sfa_auto",
+                    "middleName": "doctor",
+                    "lastName": "sfdc_qas_cn_doctor",
+                    "type": "Dentist",
+                    "orders": []
+                }
+            ],
+            "relatedCompanies": [
+                {
+                    "name": "SkytestLab_V1_CPovo_1",
+                    "matCompanyId": 266209,
+                    "relatedScanners": [],
+                    "relatedPersons": [
+                        {
+                            "matPersonId": 1383910,
+                            "email": "skytestlab_v1b_cn_tfur0@gmail.com",
+                            "password": "Aligner5",
+                            "title": "",
+                            "firstName": "Skytest",
+                            "middleName": "",
+                            "lastName": "Person",
+                            "type": "Lab Personnel",
+                            "orders": []
+                        }
+                    ]
+                }
+            ],
+            "id": "6499501140bba404892d9bb4",
+            "label": "qas_readonly_sfa_default_cn"
+        }
+    ],
+    "inputData": {
+        "request_id": ""
+    }
+}
