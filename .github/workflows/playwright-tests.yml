@@ -1,4 +1,4 @@
-name: Run Tests
+name: Run RudderStack Tests
 
 on:
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm ci
+        run: npm run setup
 
       - name: Prepare environment file
         run: |
