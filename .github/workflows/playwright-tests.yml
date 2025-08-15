@@ -42,12 +42,15 @@ jobs:
 
           # Add the correct secrets for the chosen environment
           if [ "${{ github.event.inputs.environment }}" = "qa" ]; then
+            echo "" >> .env
             echo "USERNAME=${{ secrets.QA_USERNAME }}" >> .env
             echo "PASSWORD=${{ secrets.QA_PASSWORD }}" >> .env
           elif [ "${{ github.event.inputs.environment }}" = "production" ]; then
+            echo "" >> .env
             echo "USERNAME=${{ secrets.PROD_USERNAME }}" >> .env
             echo "PASSWORD=${{ secrets.PROD_PASSWORD }}" >> .env
           elif [ "${{ github.event.inputs.environment }}" = "dev" ]; then
+            echo "" >> .env
             echo "USERNAME=${{ secrets.DEV_USERNAME }}" >> .env
             echo "PASSWORD=${{ secrets.DEV_PASSWORD }}" >> .env
           fi
