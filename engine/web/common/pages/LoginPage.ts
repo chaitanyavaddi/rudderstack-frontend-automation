@@ -81,6 +81,12 @@ export class LoginPage implements ILoginPage {
         });
     }
 
+    async clickLnkSignUp(): Promise<void> {
+        await step("Click signup link", async () => {
+            await webActions.click(this.lnkSignUp, `Signup ${lt.LNK}`);
+        });
+    }
+
     async clickLnkSkip2FA(): Promise<void> {
         await step("Click 2FA - I'll do it later link", async () => {
             await webActions.click(this.lnkSkip2FA, `2FA ${lt.LNK}`);
