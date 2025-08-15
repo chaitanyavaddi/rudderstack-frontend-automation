@@ -36,5 +36,39 @@ export enum LocatorTypes {
     STA = 'StatusBar',
     TMR = 'Timer',
     TLB = 'Toolbar',
-    TRE = 'TreeView'
+    TRE = 'TreeView',
+    CARD = 'Card',
+    SWT = 'Switch'
+}
+
+
+export enum SourceTypes {
+    AMP = "AMP",
+    ANDROID = "Android", 
+    HTTP = "HTTP",
+    IOS = "iOS",
+    JAVASCRIPT = "JavaScript",
+    NODE = "Node",
+    PYTHON = "Python",
+    SNOWFLAKE = "Snowflake",
+    WEBHOOK_SOURCE = "Webhook Source"
+}
+
+export enum DestinationTypes {
+    AMAZON_S3 = "Amazon S3",
+    AMPLITUDE = "Amplitude",
+    BIGQUERY = "BigQuery",
+    HUBSPOT = "HubSpot",
+    MIXPANEL = "Mixpanel",
+    POSTGRES = "Postgres",
+    REDSHIFT = "Redshift",
+    SNOWFLAKE = "Snowflake",
+    WEBHOOK = "Webhook"
+}
+
+export enum CardStatus {
+    ENABLED = "Enabled",
+    DISABLED = "Disabled",
+    CONNECTED = "Connected",
+    DISCONNECTED = "Disconnected"
 }

@@ -22,10 +22,10 @@ export class HomePage implements IHomePage {
 
         this.btnSettings         = page.locator('div.links-container > ul > li.settings-links');
         this.mnuPracticeSettings = page.locator('#practiceManagementTab');
-        this.btnNewScan         = page.locator('#btn-new-scan-doctor');
-        this.btnPatients        = page.locator('#btn-patients');
-        this.btnOrders          = page.locator('#btn-orders');
-        this.btnMessages        = page.locator('#btn-messages');
+        this.btnNewScan          = page.locator('#btn-new-scan-doctor');
+        this.btnPatients         = page.locator('#btn-patients');
+        this.btnOrders           = page.locator('#btn-orders');
+        this.btnMessages         = page.locator('#btn-messages');
     }
 
     async clickBtnSettings(): Promise<void> {

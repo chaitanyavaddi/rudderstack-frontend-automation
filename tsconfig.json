@@ -6,9 +6,13 @@
       "@core/*": [
         "engine/*"
       ],
-      "@myIteroDotCom/*": [
-        "engine/web/myItero.com/*"
+      "@common/*": [
+        "engine/web/common/*"
       ],
+      "@collect/*":[
+        "engine/web/collect/*"
+      ],
+      
       "@accountManagement/*": [
         "engine/web/accountManagement/*"
       ],
