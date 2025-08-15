@@ -1,28 +1,51 @@
 {
-  "name": "playwright-typescript-playwright-test",
+  
+  "name": "rudderstack-automation",
   "version": "1.0.0",
-  "description": "MIDC Auto Framework with Typescript",
-  "main": "index.js",
+  "description": "RudderStack Test Automation Framework",
   "scripts": {
     "test": "npx playwright test",
-    "test:single": "npx playwright test collectTrackEvent.test.ts --project=Chrome",
-    "test:parallel": "npx playwright test --grep @Smoke --project=Chrome",
-    "test:serial": "npx playwright test --grep @Smoke --workers=1 --project=Chrome",
-    "test:ui": "npx playwright test --grep @Smoke --ui",
-    "test:api": "npx playwright test --grep @API --workers=1 --project=Chrome",
-    "test:db": "npx playwright test DB.test.ts --project=DB",
-    "test:record": "npx playwright codegen",
-    "test:visual": "npx playwright test visualComparision.test.ts --project=Chrome",
-    "test:device": "npx playwright test Emulation.test.ts --project=Device",
-    "allureReport": "allure serve",
-    "lighthouse": "node tests/lighthouse/Lighthouse.js",
-    "test:accessibility": "npx playwright test Axe.test.ts --project=Chrome"
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
+    
+    "test:chrome": "npx playwright test --project=Chrome",
+    "test:firefox": "npx playwright test --project=Firefox",
+    "test:api": "npx playwright test --project=API",
+    
+    "test:smoke": "npx playwright test --grep @Smoke",
+    "test:regression": "npx playwright test --grep @Regression",
+    
+    "test:dev": "TEST_ENV=dev npx playwright test --project=Chrome",
+    "test:qa": "TEST_ENV=qa npx playwright test --project=Chrome",
+    "test:prod": "TEST_ENV=production npx playwright test --project=Chrome",
+    
+    "test:dev:smoke": "TEST_ENV=dev npx playwright test --grep @Smoke",
+    "test:qa:smoke": "TEST_ENV=qa npx playwright test --grep @Smoke",
+    "test:prod:smoke": "TEST_ENV=production npx playwright test --grep @Smoke",
+    
+    "report:allure:dev": "allure serve ./output/dev/allure-results",
+    "report:allure:qa": "allure serve ./output/qa/allure-results",
+    "report:allure:prod": "allure serve ./output/production/allure-results",
+    
+    "report:html:dev": "npx playwright show-report ./output/dev/html-report",
+    "report:html:qa": "npx playwright show-report ./output/qa/html-report",
+    "report:html:prod": "npx playwright show-report ./output/production/html-report",
+    
+    "clean": "rimraf output",
+    "clean:dev": "rimraf ./output/dev",
+    "clean:qa": "rimraf ./output/qa",
+    "clean:prod": "rimraf ./output/production",
+    
+    "install:browsers": "npx playwright install",
+    "allure:install": "npm install -g allure-commandline",
+    "setup": "npm install && npm run install:browsers && npm run allure:install"
   },
   "repository": {
     "type": "git",
     "url": "#"
   },
-  "author": "System Flows",
+  "author": "Chaitanya Vaddi",
   "license": "MIT",
   "dependencies": {
     "@axe-core/playwright": "^4.9.0",
@@ -34,6 +57,7 @@
     "adm-zip": "^0.5.12",
     "allure-playwright": "^2.15.1",
     "crypto-js": "^4.2.0",
+    "dotenv": "^17.2.1",
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.29.1",
     "exceljs": "^4.4.0",
@@ -43,5 +67,10 @@
     "pg": "^8.11.5",
     "typescript": "^5.4.5",
     "winston": "^3.13.0"
+  }, 
+  "devDependencies": {
+    "allure-playwright": "^2.15.1",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.4.5"
   }
 }

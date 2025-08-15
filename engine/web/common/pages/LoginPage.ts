@@ -18,6 +18,10 @@ export class LoginPage implements ILoginPage {
     readonly lnkForgotPassword: Locator;
     readonly lnkSignUp: Locator;
 
+    readonly lnkSkip2FA: Locator;
+    readonly btnGoToDashboard: Locator;
+    readonly btnCloseAITip: Locator
+
     constructor(page: Page, context: BrowserContext) {
         Object.assign(this, { page, context });
         webActions = new WebActions(this.page, this.context);
@@ -29,6 +33,10 @@ export class LoginPage implements ILoginPage {
         this.btnContinueWithSSO = page.locator('button').filter({ hasText: 'Continue with SSO' });
         this.lnkForgotPassword  = page.locator('a.login_forgotLink__DhrQI');
         this.lnkSignUp          = page.locator('a').filter({ hasText: 'Sign up' });
+        
+        this.lnkSkip2FA         = page.locator('[href="/addmfalater"]');
+        this.btnGoToDashboard   = page.locator('[type="button"]');
+        this.btnCloseAITip      = page.locator('[aria-label="Close"]');
     }
 
     async navigate(url: string): Promise<void> {
@@ -73,9 +81,23 @@ export class LoginPage implements ILoginPage {
         });
     }
 
-    async clickLnkSignUp(): Promise<void> {
-        await step("Click sign up link", async () => {
-            await webActions.click(this.lnkSignUp, `Sign Up ${lt.LNK}`);
+    async clickLnkSkip2FA(): Promise<void> {
+        await step("Click 2FA - I'll do it later link", async () => {
+            await webActions.click(this.lnkSkip2FA, `2FA ${lt.LNK}`);
         });
     }
+
+    async clickBtnGoToDashboard(): Promise<void> {
+        await step("Click Goto dashboard button", async () => {
+            await webActions.click(this.btnGoToDashboard, `Goto Dashboard ${lt.BTN}`);
+        });
+    }
+
+    async clickBtnCloseAIToolTip(): Promise<void> {
+        await step("Click AI Tooltip close button", async () => {
+            await webActions.click(this.btnCloseAITip, `AI Tip ${lt.BTN}`);
+        });
+    }
+
+    
 }

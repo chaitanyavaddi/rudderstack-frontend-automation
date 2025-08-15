@@ -1,394 +1,255 @@
-# Orbit Test Framework
+# RudderStack Test Automation Framework
 
-A TypeScript-based test automation framework using Playwright with Allure reporting.
+TypeScript-based test automation framework for RudderStack using Playwright with Allure reporting.
 
-## Prerequisites
+**Designed & Developed by:** Chaitanya Vaddi
 
-### 1. Install Java (Required for Allure Reports)
+## Quick Start
 
-**Download Java:**
-- Visit [Oracle JDK](https://www.oracle.com/java/technologies/downloads/) or [OpenJDK](https://adoptium.net/)
-- Download Java 11 or higher
-- Install following the installer instructions
+### Prerequisites
+- Node.js 18+
+- Java 17+ (for Allure reports)
 
-**Set Environment Variables (Windows):**
-1. Open System Properties → Advanced → Environment Variables
-2. Add new System Variable:
-   - Variable name: `JAVA_HOME`
-   - Variable value: `C:\Program Files\Java\jdk-17` (your Java path)
-3. Edit `Path` variable and add: `%JAVA_HOME%\bin`
-4. Restart terminal
-
-**Verify Java Installation:**
+### One-Command Setup
 ```bash
-java -version
+npm run setup
+```
+This installs dependencies, browsers, and Allure CLI.
+
+### Alternative: Docker Setup
+```bash
+# Build and run with Docker (no local dependencies needed)
+docker build -t rudderstack-tests .
+docker run --rm rudderstack-tests
 ```
 
-### 2. Install Allure CLI
+### Run Tests
+
 ```bash
-npm install -g allure-commandline
+npm run test:dev        # Development environment
+npm run test:qa         # QA environment
+npm run test:prod       # Production environment
 ```
 
-## Project Setup
+## Quality Principles Implementation
 
-### 1. Install Dependencies
-```bash
-npm install
+### Clear & Modular Structure
+```
+├── config/
+│   └── testConfig.ts              # Environment configuration
+├── engine/web/collect/
+│   ├── pages/                     # Page Object Model
+│   ├── steps/                     # Business logic layer
+│   └── states/                    # State management
+├── lib/
+│   ├── BaseTest.ts               # Test fixtures
+│   └── WebActions.ts             # Reusable utilities
+├── tests/                        # Test cases
+├── .env.dev                      # Development environment
+├── .env.qa                       # QA environment
+├── .env.production               # Production environment
+└── .github/workflows/            # CI/CD automation
 ```
 
-### 2. Install Playwright Browsers
+### Environment & Credentials Management
+**Secure credential storage in environment files:**
 ```bash
-npx playwright install
+# .env.qa
+BASE_URL=https://qa.rudderstack.com
+USERNAME=qa.user@company.com
+PASSWORD=SecurePassword123
+API_VERSION=v2
+HEADLESS=false
+PARALLEL_EXECUTION=true
+```
+**Multi-environment support:**
+QA, DEV, PRODUCTION
+
+### Code Modularity & Reusability
+**Page Object Model implementation:**
+```typescript
+// Modular page objects with inner tab classes
+export class DestinationDetailsPage {
+  readonly EventsTab: IEventsTab;
+  readonly SourcesTab: ISourcesTab;
+  
+  // Reusable methods across environments
+  async navigate(destinationId: string): Promise<void> {
+    await webActions.goto(`/destinations/${destinationId}`);
+  }
+}
 ```
 
-### 3. Install System Dependencies (Optional)
-```bash
-npx playwright install-deps
+**Reusable utilities:**
+```typescript
+// lib/WebActions.ts - Common utilities
+export class WebActions {
+  async click(locator: Locator, description: string): Promise<void> {
+    // Reusable click with retry logic
+  }
+  
+  async waitForElement(locator: Locator): Promise<void> {
+    // Reusable wait logic
+  }
+}
 ```
+
+**State management for maintainability:**
+```typescript
+// Persistent state across test steps
+export class DestinationDetailsPageState {
+  readonly EventsTab: EventsTabState;
+  
+  // Reusable state methods
+  getMetrics(): EventMetrics {
+    return this.EventsTab.getMetrics();
+  }
+}
+```
+
+### CI/CD Integration
+**GitHub Actions workflow included:**
+```yaml
+# .github/workflows/tests.yml
+name: Test Automation
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [qa, production]
+    
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+    - uses: actions/setup-java@v4
+    - run: npm ci
+    - run: npx playwright install --with-deps
+    - run: npm run test:${{ matrix.environment }}:smoke
+```
+
+**Automatic environment setup with secrets:**
+- Environment-specific credential injection
+- Multi-browser testing matrix
+- Artifact collection and reporting
 
 ## Running Tests
 
-### Environment Options
-- `ppr` - Production Preview
-- `qas` - QA/Staging  
-- `e3` - Environment 3
-
-### Basic Test Execution
+### Basic Execution
 ```bash
+# Run all tests
+npm run test
 
-# Run all tests on PPR environment
-npm run test --testdata=ppr_readonly_sfa_default_ap.json
+# Environment-specific
+npm run test:qa:smoke
+npm run test:prod:smoke
 
+# Browser-specific
+npm run test:chrome
+npm run test:firefox
 ```
 
-### Specific Test Commands
+### Report Generation
 ```bash
-# Run single test file on Chrome
-npm run test:single --testdata=ppr_readonly_sfa_default_ap.json
+# View Allure reports
+npm run report:allure:qa
 
-# Run tests with specific tag in parallel
-npm run test:parallel --testdata=ppr_readonly_sfa_default_ap.json
-
-# Run tests serially (one at a time)
-npm run test:serial --testdata=ppr_readonly_sfa_default_ap.json
-
-# Run tests in UI mode
-npm run test:ui --testdata=ppr_readonly_sfa_default_ap.json
-
-# Run API tests
-npm run test:api --testdata=ppr_readonly_sfa_default_ap.json
-
-# Run database tests
-npm run test:db --testdata=ppr_readonly_sfa_default_ap.json
-
-# Run visual comparison tests
-npm run test:visual --testdata=ppr_readonly_sfa_default_ap.json
-
-# Run accessibility tests
-npm run test:accessibility --testdata=ppr_readonly_sfa_default_ap.json
-
-# Run tests on mobile device emulation
-npm run test:device --testdata=ppr_readonly_sfa_default_ap.json
+# View HTML reports
+npm run report:html:qa
 ```
 
-### Debug Options
-```bash
-# Run with headed browser (visible)
-npm run test --testdata=ppr_readonly_sfa_default_ap.json
+## Framework Architecture
 
-# Run specific test file
-npm run test --testdata=ppr_readonly_sfa_default_ap.json -- tests/yourtest.spec.ts
+### Layered Design
+1. **Test Layer** - Business scenarios and test cases
+2. **Steps Layer** - Workflow orchestration and business logic
+3. **Pages Layer** - UI interactions and element definitions
+4. **Core Layer** - Utilities, state management, and configuration
 
-# Run tests matching a pattern
-npm run test --testdata=ppr_readonly_sfa_default_ap.json -- --grep "@Smoke"
-```
-
-## Reports
-
-### Generate and View Allure Report
-```bash
-# After running tests, generate Allure report
-# npm run allureReport
-allure serve ./output/allure-results
-```
-
-
-
-### View HTML Report
-```bash
-# Open built-in HTML report
-start ./output/html-report/index.html
-```
-
-### Report Locations
-- **Allure Results:** `./output/allure-results`
-- **HTML Report:** `./output/html-report`
-- **Test Results:** `./output/test-results`
-
-## Writing Tests
-
-### Basic Test Structure
+### Environment Configuration
+Dynamic configuration loading based on `TEST_ENV`:
 ```typescript
-import { step } from "@plugins/allureMod"
-import test from '@lib/BaseTest';
+// config/testConfig.ts
+export const testConfig: TestConfig = {
+  environment: process.env.TEST_ENV || 'qa',
+  baseUrl: process.env.BASE_URL!,
+  credentials: {
+    username: process.env.USERNAME!,
+    password: process.env.PASSWORD!,
+  },
+  // ... other configuration
+};
+```
 
-test(`Test Description`, { tag: '@Component' }, async ({ 
-  midcLoginPage, 
-  midcHomePage, 
-  accMngPracticeInfoPage 
+### Test Implementation
+```typescript
+import test from '@lib/BaseTest';
+import { testConfig } from '../config/testConfig';
+
+test(`HTTP → Webhook Flow [${testConfig.environment}]`, { 
+  tag: '@Smoke' 
+}, async ({ 
+  loginPageSteps, 
+  connectionsPageSteps, 
+  destinationDetailsPageSteps 
 }) => {
-    // Test steps
-    await midcLoginPage.navigate()
-    await midcLoginPage.loginToApplication('user@email.com', 'password')
-    await midcHomePage.goToPracticeSettings()
-    await accMngPracticeInfoPage.verifyPracticeInfo()
+  
+  // Environment-aware credentials
+  await loginPageSteps.navigate();
+  await loginPageSteps.loginToApplication(
+    testConfig.credentials.username, 
+    testConfig.credentials.password
+  );
+  
+  // Modular workflow steps
+  await connectionsPageSteps.loadDataPlaneUrl();
+  await connectionsPageSteps.loadSourceCard(undefined, SourceTypes.HTTP, CardStatus.ENABLED);
+  
+  await connectionsPageSteps.clickDestinationCard(undefined, DestinationTypes.WEBHOOK, CardStatus.ENABLED);
+  
+  // Reusable component interactions
+  await destinationDetailsPageSteps.EventsTab.navigate();
+  await destinationDetailsPageSteps.EventsTab.refresh();
+  await destinationDetailsPageSteps.EventsTab.validateMetrics(0, 0, '0%');
 });
 ```
 
-### Available Page Objects
-The framework provides pre-configured page objects through fixtures organized by module:
+## Available Components
 
-**MyItero.com Module:**
-- `midcLoginPage` - Login page interactions
-- `midcHomePage` - Home page interactions
-
-**Account Management Module:**  
-- `accMngPracticeInfoPage` - Practice info page interactions
+**Page Objects:**
+- `loginPageSteps` - Authentication workflows
+- `connectionsPageSteps` - Connection management
+- `destinationDetailsPageSteps` - Destination configuration
+  - `EventsTab` - Event monitoring
+  - `SourcesTab` - Source management
+  - `TransformationTab` - Data transformation
 
 **Utilities:**
-- `webActions` - Common web actions utility
-- `apiActions` - API interaction utilities  
-- `dbActions` - Database interaction utilities
-- `testDataActions` - Test data management utilities
+- `webActions` - Common web interactions
+- `testConfig` - Environment configuration access
 
-### Test Tags
-Use tags to categorize and run specific test groups:
-- `@Smoke` - Smoke tests
-- `@Component` - Component tests
-- `@API` - API tests
-- Custom tags as needed
+## Clean Code Practices
 
-### Base Test Configuration
-The framework extends Playwright's base test with custom fixtures defined in `@lib/BaseTest`:
-
-```typescript
-import { TestInfo, test as baseTest } from "@playwright/test";
-import { LoginPageSteps as midcLoginPageSteps } from "@myIteroDotCom/steps/LoginPageSteps";
-import { HomePageSteps as midcHomePageSteps } from "@myIteroDotCom/steps/HomePageSteps"
-import { PracticeInfoPageSteps as accMngPracticeInfoPageSteps } from "@accountManagement/steps/PracticeInfoPageSteps"
-import { WebActions } from "@lib/WebActions";
-
-const test = baseTest.extend<{
-  webActions: WebActions;
-  testInfo: TestInfo;
-  midcLoginPage: midcLoginPageSteps;
-  midcHomePage: midcHomePageSteps;
-  accMngPracticeInfoPage: accMngPracticeInfoPageSteps;
-}>({
-  // Fixture implementations...
-});
-
-export default test;
-```
-
-## Adding New Tests
-
-### 1. Creating New Page Objects
-Create page objects in the appropriate module:
-
-**For MyItero.com features:**
-```typescript
-// engine/web/myitero.com/pages/NewPage.ts
-export class NewPage {
-  constructor(private page: Page, private context: BrowserContext) {}
-  
-  async performAction() {
-    // Page interactions
-  }
-}
-```
-
-**For Account Management features:**
-```typescript
-// engine/web/accountManagement/pages/NewAccountPage.ts
-export class NewAccountPage {
-  constructor(private page: Page, private context: BrowserContext) {}
-  
-  async performAccountAction() {
-    // Account-specific interactions
-  }
-}
-```
-
-### 2. Creating Step Definitions
-Create corresponding step classes:
-
-```typescript
-// engine/web/myitero.com/steps/NewPageSteps.ts
-import { NewPage } from "../pages/NewPage";
-
-export class NewPageSteps {
-  private newPage: NewPage;
-  
-  constructor(private page: Page, private context: BrowserContext) {
-    this.newPage = new NewPage(page, context);
-  }
-  
-  async executeBusinessWorkflow() {
-    await this.newPage.performAction();
-    // Additional business logic
-  }
-}
-```
-
-### 3. Extending BaseTest
-Add new fixtures to BaseTest:
-
-```typescript
-// lib/BaseTest.ts
-import { NewPageSteps } from "@myIteroDotCom/steps/NewPageSteps";
-
-const test = baseTest.extend<{
-  // ... existing fixtures
-  newPage: NewPageSteps;
-}>({
-  // ... existing fixture implementations
-  newPage: async ({ page, context }, use) => {
-    await use(new NewPageSteps(page, context));
-  },
-});
-```
-
-### 4. Writing Tests
-Use the new fixtures in your tests:
-
-```typescript
-// tests/component/newFeature.test.ts
-import test from '@lib/BaseTest';
-
-test(`New Feature Test`, { tag: '@Component' }, async ({ 
-  midcLoginPage, 
-  newPage 
-}) => {
-    await midcLoginPage.navigate();
-    await midcLoginPage.loginToApplication('user@email.com', 'password');
-    await newPage.executeBusinessWorkflow();
-});
-```
-
-## File Organization Guidelines
-
-### Module Structure
-- **accountManagement/** - All account/practice management related functionality
-- **myitero.com/** - Core application features and main user journeys
-
-### Within Each Module:
-- **core/** - Business logic and domain models
-- **pages/** - Page object classes with element selectors and basic actions
-- **steps/** - Step definition classes with business workflows
-
-### Test Organization:
-- **tests/component/** - Feature/component integration tests
-- **tests/api/** - API-specific tests
-- **tests/utils/** - Test utilities and helpers
-
-### Naming Conventions:
-- **Page Objects:** `[FeatureName]Page.ts` (e.g., `LoginPage.ts`)
-- **Step Classes:** `[FeatureName]PageSteps.ts` (e.g., `LoginPageSteps.ts`)
-- **Test Files:** `[featureName].test.ts` (e.g., `inviteUser.test.ts`)
-
-## Project Structure
-
-```
-├── engine/
-│   └── web/
-│       ├── accountManagement/       # Account management module
-│       │   ├── core/               # Core account management logic
-│       │   ├── pages/              # Account management page objects
-│       │   └── steps/              # Account management step definitions
-│       ├── myitero.com/            # Main application module
-│       │   ├── core/               # Core application logic  
-│       │   ├── pages/              # Application page objects (HomePage.ts, LoginPage.ts)
-│       │   └── steps/              # Application step definitions
-│       ├── lib/                    # Base utilities and framework
-│       │   ├── APIActions.ts       # API interaction utilities
-│       │   ├── BaseTest.ts         # Extended Playwright test with fixtures
-│       │   ├── DBActions.ts        # Database interaction utilities
-│       │   ├── TestDataActions.ts  # Test data management
-│       │   └── WebActions.ts       # Web interaction utilities
-│       ├── plugins/                # Custom framework plugins
-│       │   ├── allureMod.ts        # Allure reporting modifications
-│       │   ├── logger.ts           # Logging utilities
-│       │   └── loggerMod.ts        # Logger modifications
-│       ├── tests/                  # Test files organized by type
-│       │   ├── api/                # API tests
-│       │   ├── component/          # Component/feature tests
-│       │   │   └── inviteUser.test.ts
-│       │   └── utils/              # Test utilities
-│       ├── output/                 # Test results and reports
-│       ├── playwright.config.ts    # Playwright configuration
-│       ├── testConfig.ts          # Environment configurations
-│       ├── global-setup.ts        # Global test setup
-│       └── package.json           # Dependencies and scripts
-```
-
-### Architecture Overview
-
-The framework follows a **layered architecture**:
-
-1. **Tests** (`tests/`) - High-level test scenarios
-2. **Steps** (`*/steps/`) - Business logic and workflows  
-3. **Pages** (`*/pages/`) - Page objects with element definitions
-4. **Core** (`*/core/`) - Domain-specific core logic
-5. **Lib** (`lib/`) - Shared utilities and base framework
-6. **Plugins** (`plugins/`) - Framework extensions
+- **No dead code** - All code is actively used
+- **Proper naming** - Descriptive method and class names
+- **Consistent formatting** - TypeScript/ESLint standards
+- **Modular design** - Single responsibility principle
+- **Reusable components** - DRY principle implementation
 
 ## Troubleshooting
 
-### Common Issues
-
-**Browsers not found:**
 ```bash
-npx playwright install
+# Verify setup
+java --version
+node --version
+
+# Clean installation
+npm run clean
+npm run setup
+
+# Docker alternative
+docker build -t rudderstack-tests .
+docker run --rm rudderstack-tests npm run test:qa:smoke
 ```
-
-**Java not found (for Allure):**
-- Install Java and set JAVA_HOME environment variable
-- Add `%JAVA_HOME%\bin` to PATH
-
-**Permission errors:**
-```bash
-# Run as administrator
-npx playwright install --with-deps
-```
-
-**Clear Playwright cache:**
-```bash
-npx playwright install --force
-```
-
-### Environment Variables
-Make sure these are set in your system:
-- `JAVA_HOME` - Path to Java installation
-- `PATH` - Should include `%JAVA_HOME%\bin`
-
-### Global Setup
-The framework includes `global-setup.ts` for test environment preparation. This runs once before all tests and can be used for:
-- Database setup
-- Authentication token generation  
-- Environment validation
-- Test data preparation
-
-### Logging and Reporting
-The framework includes custom logging through:
-- `plugins/logger.ts` - Core logging functionality
-- `plugins/loggerMod.ts` - Playwright integration
-- `plugins/allureMod.ts` - Allure report enhancements
-
-Logs are automatically captured and included in test results.
-
-## Additional Resources
-
-- [Playwright Documentation](https://playwright.dev/)
-- [Allure Report Documentation](https://docs.qameta.io/allure/)
-- [TypeScript Documentation](https://www.typescriptlang.org/docs/)

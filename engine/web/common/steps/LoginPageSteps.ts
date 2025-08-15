@@ -26,6 +26,9 @@ export class LoginPageSteps implements ILoginPageSteps {
             await this.loginPage.fillTxtEmail(email);
             await this.loginPage.fillTxtPassword(password);
             await this.loginPage.clickBtnLogin();
+            await this.loginPage.clickLnkSkip2FA();
+            await this.loginPage.clickBtnGoToDashboard();
+            await this.loginPage.clickBtnCloseAIToolTip();
         });
     }
 

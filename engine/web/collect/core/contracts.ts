@@ -48,7 +48,7 @@ export interface IConnectionsPageSteps {
 
 // ===== MAIN DESTINATIONS LIST PAGE =====
 
-// Tab interfaces - these define the structure for inner classes
+// Tab interfaces
 export interface IEventsTab {
     readonly btnRefresh: Locator;
     readonly ddlSourceFilter: Locator;

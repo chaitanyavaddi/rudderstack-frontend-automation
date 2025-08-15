@@ -17,6 +17,10 @@ export interface ILoginPage {
     clickBtnContinueWithSSO(): Promise<void>;
     clickLnkForgotPassword(): Promise<void>;
     clickLnkSignUp(): Promise<void>;
+
+    clickLnkSkip2FA(): Promise<void>;
+    clickBtnGoToDashboard(): Promise<void>;
+    clickBtnCloseAIToolTip(): Promise<void>
 }
 
 export interface ILoginPageSteps {

@@ -1,179 +1,116 @@
-import { PlaywrightTestConfig, devices } from "@playwright/test";
-import { testConfig } from "./testConfig";
-import * as os from "os";
-import * as path from "path";
-import * as fs from "fs";
-
+// playwright.config.ts
+import { PlaywrightTestConfig } from "@playwright/test";
+import { testConfig } from "./config/testConfig";
 
 const config: PlaywrightTestConfig = {
-  //Global Setup to run before all tests
-  // testDir: './tests',
+  // Global Setup
+  globalSetup: './global-setup',
 
+  // Test Configuration from .env
+  timeout: testConfig.timeouts.test,
+  retries: testConfig.parallel.retries,
+  workers: testConfig.parallel.enabled ? testConfig.parallel.workers : 1,
+
+  // Output Directory from .env
+  outputDir: testConfig.reports.testResults,
+
+  // Default Use Options - All controlled by .env
   use: {
-    trace: 'retain-on-failure',
-    actionTimeout: 5000,        // 5 second timeout for actions
-    navigationTimeout: 30000,   // 30 second timeout for navigation
+    baseURL: testConfig.baseUrl,
+    headless: testConfig.browser.headless,
+    viewport: testConfig.browser.viewport,
+    
+    // Timeouts from .env
+    actionTimeout: testConfig.timeouts.action,
+    navigationTimeout: testConfig.timeouts.navigation,
+    
+    // Artifacts controlled by .env
+    trace: testConfig.artifacts.trace ? 'retain-on-failure' : 'off',
+    screenshot: testConfig.artifacts.screenshot ? 'only-on-failure' : 'off',
+    video: testConfig.artifacts.video ? 'retain-on-failure' : 'off',
+    
+    // Standard settings
+    ignoreHTTPSErrors: true,
+    acceptDownloads: true,
   },
 
-  outputDir: './output/test-results',
-
-  globalSetup: `./global-setup`,
-
-  //sets timeout for each test case
-  timeout: 120000,
-
-  //number of retries if test case fails
-  retries: 0,
-
-  //Reporters
+  // Reporters with .env-controlled paths
   reporter: [
-    [`./plugins/loggerMod.ts`],
     [
-      `allure-playwright`,
+      'allure-playwright',
       {
         detail: true,
         suiteTitle: false,
-        outputFolder: "./output/allure-results",
+        outputFolder: testConfig.reports.allureOutput,
         environmentInfo: {
-          os_platform: os.platform(),
-          os_release: os.release(),
-          os_version: os.version(),
-          node_version: process.version,
+          environment: testConfig.environment,
+          base_url: testConfig.baseUrl,
+          api_version: testConfig.apiVersion,
+          parallel_execution: testConfig.parallel.enabled.toString(),
+          workers: testConfig.parallel.workers.toString(),
+          headless_mode: testConfig.browser.headless.toString(),
         },
       },
     ],
-    [`html`, { outputFolder: "./output/html-report", open: "never" }],
+    [
+      'html',
+      {
+        outputFolder: testConfig.reports.htmlOutput,
+        open: 'never',
+      },
+    ],
   ],
 
+  // Projects Configuration
   projects: [
     {
-      name: `Chrome`,
+      name: 'Chrome',
       use: {
-        // Configure the browser to use.
-        browserName: `chromium`,
-        actionTimeout: 20000,        // 20 second timeout for actions
-    navigationTimeout: 30000,   // 30 second timeout for navigation
-
-        //Chrome Browser Config
-        channel: `chrome`,
-
-        //Browser Mode
-        headless: false,
-
-        //Browser height and width
-        viewport: { width: 1500, height: 730 },
-        ignoreHTTPSErrors: true,
-
-        //Enable File Downloads in Chrome
-        acceptDownloads: true,
-
-        //Artifacts
-        screenshot: `only-on-failure`,
-        video: `retain-on-failure`,
-        trace: `retain-on-failure`,
-
-        //Slows down execution by ms
-        launchOptions: {
-          slowMo: 500,
-        },
+        browserName: 'chromium',
+        channel: 'chrome',
+        // All other settings inherited from global 'use'
       },
     },
     {
-      name: `Chromium`,
+      name: 'Chromium',
       use: {
-        browserName: `chromium`,
-        actionTimeout: 5000,        // 5 second timeout for actions
-    navigationTimeout: 30000,   // 30 second timeout for navigation
-    
-        headless: true,
-        viewport: { width: 1500, height: 730 },
-        ignoreHTTPSErrors: true,
-        acceptDownloads: true,
-        screenshot: `only-on-failure`,
-        video: `retain-on-failure`,
-        trace: `retain-on-failure`,
-        launchOptions: {
-          slowMo: 500,
-        },
-      },
-    },
-
-    {
-      name: `Firefox`,
-      use: {
-        browserName: `firefox`,
-        headless: true,
-        viewport: { width: 1500, height: 730 },
-        ignoreHTTPSErrors: true,
-        acceptDownloads: true,
-        screenshot: `only-on-failure`,
-        video: `retain-on-failure`,
-        trace: `retain-on-failure`,
-        launchOptions: {
-          slowMo: 500,
-        },
-      },
-    },
-
-    {
-      name: `Edge`,
-      use: {
-        browserName: `chromium`,
-        channel: `msedge`,
-        headless: false,
-        viewport: { width: 1500, height: 730 },
-        ignoreHTTPSErrors: true,
-        acceptDownloads: true,
-        screenshot: `only-on-failure`,
-        video: `retain-on-failure`,
-        trace: `retain-on-failure`,
-        launchOptions: {
-          slowMo: 500,
-        },
+        browserName: 'chromium',
+        headless: true, // Force headless for Chromium project
+        // Other settings inherited from global 'use'
       },
     },
     {
-      name: `WebKit`,
+      name: 'Firefox',
       use: {
-        browserName: `webkit`,
-        headless: true,
-        viewport: { width: 1500, height: 730 },
-        ignoreHTTPSErrors: true,
-        acceptDownloads: true,
-        screenshot: `only-on-failure`,
-        video: `retain-on-failure`,
-        trace: `retain-on-failure`,
-        launchOptions: {
-          slowMo: 500,
-        },
+        browserName: 'firefox',
+        headless: true, // Force headless for Firefox
+        // Other settings inherited from global 'use'
       },
     },
     {
-      name: `Device`,
+      name: 'API',
       use: {
-        ...devices[`Pixel 4a (5G)`],
-        browserName: `chromium`,
-        channel: `chrome`,
-        headless: true,
-        ignoreHTTPSErrors: true,
-        acceptDownloads: true,
-        screenshot: `only-on-failure`,
-        video: `retain-on-failure`,
-        trace: `retain-on-failure`,
-        launchOptions: {
-          slowMo: 500,
-        },
-      },
-    },
-    {
-      name: `DB`,
-    },
-    {
-      name: `API`,
-      use: {
+        baseURL: `${testConfig.baseUrl}/api/${testConfig.apiVersion}`,
+        // API tests don't need browser context
       },
     },
   ],
 };
+
+// Enhanced configuration logging
+console.log(`
+🚀 Playwright Configuration Loaded from .env:
+   📁 Environment: ${testConfig.environment}
+   🌐 Base URL: ${testConfig.baseUrl}
+   🔗 API Version: ${testConfig.apiVersion}
+   👤 Username: ${testConfig.credentials.username}
+   🖥️  Browser: ${testConfig.browser.headless ? 'Headless' : 'Headed'} (${testConfig.browser.viewport.width}x${testConfig.browser.viewport.height})
+   ⚡ Parallel: ${testConfig.parallel.enabled} (${testConfig.parallel.workers} workers)
+   🔄 Retries: ${testConfig.parallel.retries}
+   📊 Artifacts: Video:${testConfig.artifacts.video} | Screenshot:${testConfig.artifacts.screenshot} | Trace:${testConfig.artifacts.trace}
+   📈 Allure: ${testConfig.reports.allureOutput}
+   📋 HTML: ${testConfig.reports.htmlOutput}
+   ⏱️  Timeouts: Nav:${testConfig.timeouts.navigation}ms | Action:${testConfig.timeouts.action}ms | Test:${testConfig.timeouts.test}ms
+`);
 
 export default config;

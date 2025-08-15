@@ -1,8 +1,15 @@
-import rimraf from "rimraf";
+// global-setup.ts
+import { rimraf } from 'rimraf';
 
 async function globalSetup(): Promise<void> {
-    await new Promise(resolve => {
-        rimraf(`./output/allure-results`, resolve);
-    });
+    console.log('🧹 Cleaning previous test results...');
+    
+    // Clean output directories
+    await rimraf('./output/allure-results');
+    await rimraf('./output/*/allure-results');
+    await rimraf('./output/*/test-results');
+    
+    console.log('✅ Global setup completed');
 }
+
 export default globalSetup;
