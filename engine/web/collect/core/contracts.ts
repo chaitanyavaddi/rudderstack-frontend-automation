@@ -129,6 +129,7 @@ export interface IEventsTabSteps {
     switchToAllEvents(): Promise<void>;
     completeValidationWorkflow(): Promise<void>;
     testFiltering(): Promise<void>;
+    stateLoadCurrentMetrics(): Promise<void>
 }
 
 export interface ISourcesTabSteps {

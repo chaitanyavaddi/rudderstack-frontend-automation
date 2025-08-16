@@ -22,9 +22,9 @@ export class ConnectionsPage implements IConnectionsPage {
         webActions = new WebActions(this.page, this.context);
         this.state = new ConnectionsPageState();
 
-        this.lblDataPlaneUrl = page.locator('span.text-ellipsis').filter({ hasText: 'https://' });
-        this.btnDataPlaneCopy = page.locator('button.dataplane-url-copy-cta');
-        this.allSourceCards = page.locator('#sources-list div[id^="source-"]');
+        this.lblDataPlaneUrl     = page.locator('span.text-ellipsis').filter({ hasText: 'https://' });
+        this.btnDataPlaneCopy    = page.locator('button.dataplane-url-copy-cta');
+        this.allSourceCards      = page.locator('#sources-list div[id^="source-"]');
         this.allDestinationCards = page.locator('#destinations-list div[id^="destination-"]');
     }
 

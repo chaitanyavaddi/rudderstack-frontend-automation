@@ -74,6 +74,12 @@ export class DestinationDetailsPageSteps implements IDestinationDetailsPageSteps
             });
         }
 
+        async stateLoadCurrentMetrics(){
+            await step('COLLECT: Save Current Event Values', async () => {
+                await this.outer.destinationDetailsPage.EventsTab.stateLoadMetrics();
+            });
+        }
+
         async validateMetrics(expectedDelivered: number, expectedFailed: number, expectedRate: string): Promise<void> {
             await step(`COLLECT: Validate Events Metrics - Delivered: ${expectedDelivered}, Failed: ${expectedFailed}, Rate: ${expectedRate}`, async () => {
                 await this.outer.destinationDetailsPage.EventsTab.stateLoadMetrics();
