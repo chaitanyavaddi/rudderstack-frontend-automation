@@ -2,7 +2,6 @@ const winston = require('winston');
 
 const { combine, timestamp, printf } = winston.format;
 
-// Define your custom format
 const customFormat = printf(({ level, message, timestamp }) => {
     level = level.toUpperCase()
     return `${timestamp} [${level}]: ${message}`;
@@ -13,7 +12,7 @@ const console = new winston.transports.Console();
 const logger = winston.createLogger({
     level: 'debug',
     format: combine(
-        timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), // Customize the timestamp format
+        timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
         customFormat
     ),
     transports: [
@@ -21,7 +20,6 @@ const logger = winston.createLogger({
     ],
 });
 
-// Writes logs to console
 logger.add(console);
 
 export default logger;

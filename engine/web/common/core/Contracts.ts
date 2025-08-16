@@ -24,7 +24,7 @@ export interface ILoginPage {
 }
 
 export interface ILoginPageSteps {
-    navigate(): Promise<void>;
+    navigate(url: string): Promise<void>;
     loginToApplication(email: string, password: string): Promise<void>;
     verifyLoginButtonEnabled(): Promise<void>;
     verifyLoginButtonDisabled(): Promise<void>;

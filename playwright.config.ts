@@ -6,7 +6,7 @@ const config: PlaywrightTestConfig = {
   // Global Setup
   globalSetup: './global-setup',
 
-  // Test Configuration from .env
+  // Config .env
   timeout: testConfig.timeouts.test,
   retries: testConfig.parallel.retries,
   workers: testConfig.parallel.enabled ? testConfig.parallel.workers : 1,
@@ -68,49 +68,44 @@ const config: PlaywrightTestConfig = {
       use: {
         browserName: 'chromium',
         channel: 'chrome',
-        // All other settings inherited from global 'use'
       },
     },
     {
       name: 'Chromium',
       use: {
         browserName: 'chromium',
-        headless: true, // Force headless for Chromium project
-        // Other settings inherited from global 'use'
+        headless: true, 
       },
     },
     {
       name: 'Firefox',
       use: {
         browserName: 'firefox',
-        headless: true, // Force headless for Firefox
-        // Other settings inherited from global 'use'
+        headless: true,
       },
     },
     {
       name: 'API',
       use: {
         baseURL: `${testConfig.baseUrl}/api/${testConfig.apiVersion}`,
-        // API tests don't need browser context
       },
     },
   ],
 };
 
-// Enhanced configuration logging
 console.log(`
-🚀 Playwright Configuration Loaded from .env:
-   📁 Environment: ${testConfig.environment}
-   🌐 Base URL: ${testConfig.baseUrl}
-   🔗 API Version: ${testConfig.apiVersion}
-   👤 Username: ${testConfig.credentials.username}
-   🖥️  Browser: ${testConfig.browser.headless ? 'Headless' : 'Headed'} (${testConfig.browser.viewport.width}x${testConfig.browser.viewport.height})
-   ⚡ Parallel: ${testConfig.parallel.enabled} (${testConfig.parallel.workers} workers)
-   🔄 Retries: ${testConfig.parallel.retries}
-   📊 Artifacts: Video:${testConfig.artifacts.video} | Screenshot:${testConfig.artifacts.screenshot} | Trace:${testConfig.artifacts.trace}
-   📈 Allure: ${testConfig.reports.allureOutput}
-   📋 HTML: ${testConfig.reports.htmlOutput}
-   ⏱️  Timeouts: Nav:${testConfig.timeouts.navigation}ms | Action:${testConfig.timeouts.action}ms | Test:${testConfig.timeouts.test}ms
+   Playwright Configuration Loaded from .env:
+   Environment: ${testConfig.environment}
+   Base URL   : ${testConfig.baseUrl}
+   API Version: ${testConfig.apiVersion}
+   Username   : ${testConfig.credentials.username}
+   Browser    : ${testConfig.browser.headless ? 'Headless' : 'Headed'} (${testConfig.browser.viewport.width}x${testConfig.browser.viewport.height})
+   Parallel   : ${testConfig.parallel.enabled} (${testConfig.parallel.workers} workers)
+   Retries    : ${testConfig.parallel.retries}
+   Artifacts  : Video:${testConfig.artifacts.video} | Screenshot:${testConfig.artifacts.screenshot} | Trace:${testConfig.artifacts.trace}
+   Allure     : ${testConfig.reports.allureOutput}
+   HTML       : ${testConfig.reports.htmlOutput}
+   Timeouts   : Nav:${testConfig.timeouts.navigation}ms | Action:${testConfig.timeouts.action}ms | Test:${testConfig.timeouts.test}ms
 `);
 
 export default config;

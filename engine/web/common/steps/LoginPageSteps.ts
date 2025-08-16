@@ -15,9 +15,9 @@ export class LoginPageSteps implements ILoginPageSteps {
         this.loginPage = new LoginPage(this.page, this.context);
     }
 
-    async navigate(): Promise<void> {
+    async navigate(url: string): Promise<void> {
         await step("COMMON: Navigate to Login Page", async () => {
-            await this.loginPage.navigate("https://app.rudderstack.com/login");
+            await this.loginPage.navigate(url);
         });
     }
 

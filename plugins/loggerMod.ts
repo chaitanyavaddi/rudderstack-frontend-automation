@@ -23,9 +23,3 @@ export default class CustomReporterConfig implements Reporter {
     }
 }
 
-// console.log( "\u001b[1;31m Red message" );
-// console.log( "\u001b[1;32m Green message" );
-// console.log( "\u001b[1;33m Yellow message" );
-// console.log( "\u001b[1;34m Blue message" );
-// console.log( "\u001b[1;35m Purple message" );
-// console.log( "\u001b[1;36m Cyan message" );
