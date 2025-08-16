@@ -4,6 +4,11 @@ TypeScript-based test automation framework for RudderStack using Playwright with
 
 **Designed & Developed by:** Chaitanya Vaddi
 
+# Video WalkThrough: Setup, Demo & Features 
+Click Below image to start watching!
+
+[![Watch the video](https://img.youtube.com/vi/WyAXcU_LpVs/maxresdefault.jpg)](https://www.youtube.com/watch?v=WyAXcU_LpVs "Click to watch on YouTube")
+
 ## Quick Start
 
 ### Prerequisites
@@ -252,4 +257,5 @@ npm run setup
 # Docker alternative
 docker build -t rudderstack-tests .
 docker run --rm rudderstack-tests npm run test:qa:smoke
+
 ```
