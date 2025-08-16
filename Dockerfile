@@ -44,10 +44,6 @@ RUN echo "Verifying installations..." && \
 # Default command - can be overridden
 CMD ["npm", "run", "test:qa:smoke"]
 
-# ==============================================
-# Usage Examples (comment out above CMD to use)
-# ==============================================
-
 # For QA smoke tests (default)
 # CMD ["npm", "run", "test:qa:smoke"]
 

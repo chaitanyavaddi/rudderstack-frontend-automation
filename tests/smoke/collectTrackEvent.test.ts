@@ -9,7 +9,8 @@ test(`RudderStack: HTTP → Webhook Event Flow [${testConfig.environment.toUpper
 }, async ({ 
   loginPageSteps, 
   connectionsPageSteps, 
-  destinationDetailsPageSteps 
+  destinationDetailsPageSteps ,
+  rudderStackApiClient
 }) => {
   await loginPageSteps.navigate();
   await loginPageSteps.loginToApplication(
@@ -18,8 +19,11 @@ test(`RudderStack: HTTP → Webhook Event Flow [${testConfig.environment.toUpper
   );
   await connectionsPageSteps.loadDataPlaneUrl();
   await connectionsPageSteps.loadSourceCard(undefined, SourceTypes.HTTP, CardStatus.ENABLED);
-  const currentState = await connectionsPageSteps.getState();
-  // API CALL
+  const connPageState = await connectionsPageSteps.getState();
+  console.log(connPageState.dataPlaneUrl);
+  console.log(connPageState.currentSourceCard.writeKey);
+  const api = rudderStackApiClient(connPageState.dataPlaneUrl, connPageState.currentSourceCard.writeKey);
+  await api.trackEvent.sendCurlExampleTrackEvent();
   await connectionsPageSteps.clickDestinationCard(undefined, DestinationTypes.WEBHOOK, CardStatus.ENABLED);
   await destinationDetailsPageSteps.EventsTab.navigate();
   await destinationDetailsPageSteps.EventsTab.refresh();
